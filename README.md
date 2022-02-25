@@ -11,4 +11,4 @@ More technologies will be added as the project progresses
 ## Follow my development journey as I develop an issue tracker from scratch
 
 - Initial homepage design
-[Home](design/Home.png)
+![Home](design/Home.png)
