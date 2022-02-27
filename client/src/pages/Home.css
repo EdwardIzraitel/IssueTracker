@@ -1,0 +1,78 @@
+.background {
+    background-color: #D8F2DF;
+    min-height: 100vh;
+  }
+
+.side-bar{
+    background-color: white;
+    min-width: 25vh;
+}
+
+.header{
+    min-height:8vh;
+    
+}
+.headerbg{
+    background-image: url("../images/headerbg.jpg");
+    height: 30vh;
+    /* position: absolute; */
+}
+
+
+.btn{    
+    width:85%;
+    border: solid 2px black !important;
+    border-radius: 10px !important;
+    text-align: left !important;
+    
+}
+
+.btn:hover, .btn:active{
+    background-color: red;
+}
+
+
+
+input:focus{
+    border-color: red;
+    outline: none;
+}
+
+img{
+    width:25px;
+    height:25px;
+}
+
+.headerButtons{
+    width:25vh;
+    margin-right: 20px;
+}
+
+.line{
+    position:relative;
+    height:35px;
+    width:2px;
+    background-color: black;
+    border-radius: 2px;
+    bottom:2.5px;
+}
+
+.project-box{
+    height:30vh;
+    width:90%;
+    background-color: white;
+    margin-top: -15vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.box{
+    width:35vh;
+    height:35vh;
+    background-color: white;
+    margin-top:5vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
