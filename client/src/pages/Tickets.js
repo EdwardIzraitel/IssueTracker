@@ -1,24 +1,20 @@
-import React from 'react';
-import './Home.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React, { useEffect, useState } from 'react';
+import './Tickets.css';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import Projects from '../components/home/Projects';
-import Stats from '../components/home/Stats';
-const Home = () => {
+import MyTickets from '../components/MyTickets/MyTickets';
+const Tickets = () => {
     return(
         <div className="background">
             <div className="row g-0">
                 <Sidebar/>
                 <div className="col">
                     <Header/>
-                    <Projects/>
-                    <Stats/>
+                    <MyTickets/>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Home;
+export default Tickets;

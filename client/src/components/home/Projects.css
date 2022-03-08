@@ -1,0 +1,30 @@
+.project-box {
+  height: 25vh;
+  width: 90%;
+  background-color: white;
+  margin-top: -15vh;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  /* position: absolute; */
+  /* top: 50px; */
+}
+
+.button {
+  width: 3vh;
+  background-color: #baf7ca;
+  border: none;
+  height: 3.5vh;
+  border: solid 0px black;
+}
+.button:active {
+  background-color: rgb(33, 228, 33);
+}
+.active {
+  background-color: red;
+}
+
+.button:hover {
+  border-width: 1px;
+  transform: scaleX(1);
+}

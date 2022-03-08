@@ -1,0 +1,27 @@
+/* Header styling*/
+.header {
+  min-height: 8vh;
+}
+.headerbg {
+  background-image: url("../images/headerbg.jpg");
+  height: 30vh;
+  /* position: relative; */
+}
+img {
+  width: 25px;
+  height: 25px;
+}
+
+.headerButtons {
+  width: 25vh;
+  margin-right: 20px;
+}
+
+.line {
+  position: relative;
+  height: 35px;
+  width: 2px;
+  background-color: black;
+  border-radius: 2px;
+  bottom: 2.5px;
+}
