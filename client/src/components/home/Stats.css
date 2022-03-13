@@ -1,4 +1,41 @@
-.box {
+.stats-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat-box {
+  margin-top: 5vh;
+  min-width: max(360px, 20vw);
+  min-height: max(300px, 40vh);
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: row;
+}
+.stat-box p {
+  margin: 0;
+}
+.stat-box:nth-child(2) {
+  margin-right: 5vw;
+  margin-left: 5vw;
+}
+svg.donutchart {
+  position: relative;
+  max-width: 300px;
+  max-height: 200px;
+  font-size: 50px;
+  /* width: 100%; */
+  /* margin-top: 44px; */
+}
+
+@media (max-width: 1200px) {
+  .stat-box:last-child {
+    margin-bottom: 5vh;
+  }
+}
+/* .box {
   width: 55vh;
   height: 35vh;
   background-color: white;
@@ -6,4 +43,4 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
-}
+} */

@@ -11,12 +11,16 @@ const Projects = () => {
     ["f", "test", "Edward", "Complete"],
     ["g", "test", "Edward", "Complete"],
     ["IssueTracker", "test", "Edward", "End"],
+    ["IssueTracker", "test", "Edward", "End"],
+    ["IssueTracker", "test", "Edward", "End"],
   ];
 
   const [currentProjectPage, setCurrentProjectPage] = useState(1);
   const [projectsOnCurrentPage, setProjectsOnCurrentPage] = useState([]);
   const [totalPageNumbers, setTotalPageNumbers] = useState(1);
-  const MAX_ITEMS_PER_PAGE = 3;
+  const MAX_ITEMS_PER_PAGE = 4;
+
+  window.addEventListener("resize", console.log(window.innerHeight));
 
   useEffect(() => {
     findDisplayableItems(
@@ -32,39 +36,47 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="project-box shadow">
-      <p className="m-md-2">Projects</p>
-      <div style={{ height: "68%" }}>
-        <div className="row g-0 m-md-2" style={{ backgroundColor: "#D8F2DF" }}>
-          <div className="col-2">Project</div>
-          <div className="col-5">Description</div>
-          <div className="col-3">Contributors</div>
-          <div className="col">Status</div>
-        </div>
-        {projectsOnCurrentPage.map((element) => {
-          return (
-            <div className="m-md-2">
-              <div className="row g-0">
-                <div className="col-2">{element[0]}</div>
-                <div className="col-5">{element[1]}</div>
-                <div className="col-3">{element[2]}</div>
-                <div className="col">{element[3]}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="position-relative">
-        <div className="pagination position-aboslute bottom-0">
-          {/* {createButtonProjectElements()} */}
-          {createButtonElements(
-            currentProjectPage,
-            totalPageNumbers,
-            setCurrentProjectPage
-          )}
-        </div>
+    <div className="project-box">
+      <p>Projects</p>
+      <table style={{ width: "100%" }}>
+        <thead>
+          <tr>
+            <th style={{ width: "20%" }}>Project</th>
+            <th style={{ width: "40%" }}>Description</th>
+            <th style={{ width: "20%" }}>Contributors</th>
+            <th style={{ width: "20%" }}>Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projectsOnCurrentPage.map((element) => {
+            return (
+              <tr>
+                <td>{element[0]}</td>
+                <td>{element[1]}</td>
+                <td>{element[2]}</td>
+                <td>{element[3]}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <div className="nav-buttons">
+        {createButtonElements(
+          currentProjectPage,
+          totalPageNumbers,
+          setCurrentProjectPage
+        )}
+        {console.log(window.onresize)}
       </div>
     </div>
+    //   <div className="pagination position-absolute bottom-0">
+    //     {createButtonElements(
+    //       currentProjectPage,
+    //       totalPageNumbers,
+    //       setCurrentProjectPage
+    //     )}
+    //   </div>
+    // </div>
   );
 };
 

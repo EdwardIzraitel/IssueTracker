@@ -3,6 +3,6 @@
 }
 .empty_box {
   height: 14vh;
-  width: fit-content;
+  width: 50vh;
   opacity: 0;
 }

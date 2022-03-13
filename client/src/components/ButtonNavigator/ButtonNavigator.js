@@ -1,3 +1,5 @@
+import "./ButtonNav.css";
+
 export const createButtonElements = (
   currentProjectPage,
   totalPageNumbers,
@@ -5,81 +7,67 @@ export const createButtonElements = (
 ) => {
   const buttonElements = [];
   buttonElements.push(
-    <div className="page-item m-md-1">
-      <button
-        className="shadow-none button"
-        style={{ borderRadius: "15px" }}
-        onClick={() =>
-          changeCurrentPage(
-            currentProjectPage - 1,
-            currentProjectPage,
-            totalPageNumbers,
-            setCurrentPage
-          )
-        }
-      >
-        &#60;
-      </button>
-    </div>
+    <button
+      onClick={() =>
+        changeCurrentPage(
+          currentProjectPage - 1,
+          currentProjectPage,
+          totalPageNumbers,
+          setCurrentPage
+        )
+      }
+    >
+      &#60;
+    </button>
   );
   buttonElements.push(
-    <div className="page-item m-md-1">
-      <button
-        id="active1"
-        className="active shadow-none button"
-        style={{ borderRadius: "15px" }}
-        onClick={() =>
-          changeCurrentPage(
-            1,
-            currentProjectPage,
-            totalPageNumbers,
-            setCurrentPage
-          )
-        }
-      >
-        1
-      </button>
-    </div>
+    <button
+      id="active1"
+      className="active"
+      onClick={() =>
+        changeCurrentPage(
+          1,
+          currentProjectPage,
+          totalPageNumbers,
+          setCurrentPage
+        )
+      }
+    >
+      1
+    </button>
   );
   for (let index = 2; index <= totalPageNumbers; index++) {
     buttonElements.push(
-      <div key={index} className="page-item m-md-1">
-        <button
-          id={"active" + index}
-          className="shadow-none button"
-          style={{ borderRadius: "15px" }}
-          onClick={() =>
-            changeCurrentPage(
-              index,
-              currentProjectPage,
-              totalPageNumbers,
-              setCurrentPage
-            )
-          }
-        >
-          {index}
-        </button>
-      </div>
+      <button
+        key={index}
+        id={"active" + index}
+        onClick={() =>
+          changeCurrentPage(
+            index,
+            currentProjectPage,
+            totalPageNumbers,
+            setCurrentPage
+          )
+        }
+      >
+        {index}
+      </button>
     );
   }
 
   buttonElements.push(
-    <div className="page-item m-md-1">
-      <button
-        className="shadow-none button"
-        style={{ borderRadius: "15px" }}
-        onClick={() =>
-          changeCurrentPage(
-            currentProjectPage + 1,
-            currentProjectPage,
-            totalPageNumbers,
-            setCurrentPage
-          )
-        }
-      >
-        &#62;
-      </button>
-    </div>
+    <button
+      onClick={() =>
+        changeCurrentPage(
+          currentProjectPage + 1,
+          currentProjectPage,
+          totalPageNumbers,
+          setCurrentPage
+        )
+      }
+    >
+      &#62;
+    </button>
   );
   return buttonElements;
 };

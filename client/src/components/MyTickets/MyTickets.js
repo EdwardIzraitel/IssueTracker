@@ -51,9 +51,9 @@ const MyTickets = () => {
   }, []);
 
   return (
-    <div className="tickets shadow">
-      <p className="m-md-2">My Tickets</p>
-      <div className="row g-1 m-md-2 ticket-header">
+    <div className="tickets shadow position-relative">
+      <p className="m-2">My Tickets</p>
+      <div className="row g-1 m-2 ticket-header">
         <div className="col-2 text-truncate">Ticket</div>
         <div className="col-4 text-truncate">Project</div>
         <div className="col-4 text-truncate">User</div>
@@ -61,7 +61,7 @@ const MyTickets = () => {
       </div>
       {ticketsOnCurrentPage.map((currentTicket) => {
         return (
-          <div className="row g-1 m-md-2">
+          <div className="row g-1 m-2">
             <div className="col-2 text-truncate">{currentTicket[0]}</div>
             <div className="col-4 text-truncate">{currentTicket[1]}</div>
             <div className="col-4 text-truncate">{currentTicket[2]}</div>
