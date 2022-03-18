@@ -1,8 +1,18 @@
 .background {
   background-color: var(--background-color);
 }
-.empty_box {
-  height: 14vh;
-  width: fit-content;
-  opacity: 0;
+
+.tickets {
+  min-height: 34em;
+  max-width: 80vw;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: -15vh;
+  border-radius: 10px;
+  border: 2px solid black;
+  position: relative;
+}
+
+.tickets table {
+  width: 100%;
 }

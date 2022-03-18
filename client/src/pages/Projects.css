@@ -1,8 +1,23 @@
 .background {
   background-color: var(--background-color);
 }
-.empty_box {
-  height: 14vh;
-  width: 50vh;
-  opacity: 0;
+
+.projects {
+  min-height: 34em;
+  max-width: 80vw;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: -15vh;
+  border-radius: 10px;
+  border: 2px solid black;
+  position: relative;
 }
+
+.projects table {
+  width: 100%;
+}
+/* .nav-buttons {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+} */
