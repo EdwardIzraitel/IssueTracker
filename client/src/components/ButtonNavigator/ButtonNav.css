@@ -5,3 +5,13 @@
   width: 25px;
   height: 25px;
 }
+
+.nav-buttons button:hover {
+  border: 1px black solid;
+}
+.nav-buttons button:active {
+  background-color: var(--secondary-color);
+}
+.active {
+  background-color: var(--hover-color);
+}

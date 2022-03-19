@@ -61,10 +61,10 @@ const Tickets = () => {
           <table>
             <thead>
               <tr>
-                <th>Project</th>
-                <th>Ticket</th>
-                <th>User</th>
-                <th>Status</th>
+                <th style={{ width: "30%" }}>Project</th>
+                <th style={{ width: "30%" }}>Ticket</th>
+                <th style={{ width: "20%" }}>User</th>
+                <th style={{ width: "20%" }}>Status</th>
               </tr>
             </thead>
             <tbody>

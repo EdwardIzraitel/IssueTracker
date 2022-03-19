@@ -23,8 +23,6 @@ const Home = () => {
   const [totalPageNumbers, setTotalPageNumbers] = useState(1);
   const MAX_ITEMS_PER_PAGE = 4;
 
-  // window.addEventListener("resize", console.log(window.innerHeight));
-
   useEffect(() => {
     findDisplayableItems(
       setProjectsOnCurrentPage,

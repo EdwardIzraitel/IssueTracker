@@ -28,6 +28,7 @@
 }
 
 .project-box {
+  position: relative;
   min-height: 250px;
   max-width: 90%;
   background-color: white;
@@ -35,7 +36,6 @@
   margin: 0 auto;
   border-radius: 10px;
   margin-top: -15vh;
-  /* position: relative; */
 }
 table {
   border-spacing: 0;
