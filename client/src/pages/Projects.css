@@ -3,7 +3,7 @@
 }
 
 .projects {
-  min-height: 34em;
+  min-height: 24em;
   max-width: 80vw;
   background-color: white;
   margin: 0 auto;
@@ -16,8 +16,3 @@
 .projects table {
   width: 100%;
 }
-/* .nav-buttons {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-} */

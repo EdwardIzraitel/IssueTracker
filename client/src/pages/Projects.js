@@ -35,7 +35,7 @@ const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsOnCurrentPage, setProjectsOnCurrentPage] = useState([]);
   const [totalPageNumbers, setTotalPageNumbers] = useState(1);
-  const MAX_ITEMS_PER_PAGE = 13;
+  const MAX_ITEMS_PER_PAGE = 8;
 
   useEffect(() => {
     findDisplayableItems(
