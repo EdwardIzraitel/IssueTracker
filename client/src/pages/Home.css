@@ -1,6 +1,6 @@
-.background {
+/* .background {
   background-color: var(--background-color);
-}
+} */
 .content-wrapper {
   display: grid;
   grid-template-columns: auto;

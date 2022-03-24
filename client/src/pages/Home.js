@@ -7,7 +7,7 @@ import {
 } from "../components/ButtonNavigator/ButtonNavigator";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import Stats from "../components/home/Stats";
+import Stats from "../components/DonutChart/Stats";
 const Home = () => {
   const list = [
     ["e", "test", "Edward", "Complete"],
