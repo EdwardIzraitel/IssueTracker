@@ -1,0 +1,19 @@
+{
+  "name": "issuetracker",
+  "version": "1.0.0",
+  "description": "The goal of this issue tracker is to use the following technologies:\r - Figma (design)\r - React\r - Python\r - AWS for deployment\r - Docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdwardIzraitel/IssueTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdwardIzraitel/IssueTracker/issues"
+  },
+  "homepage": "https://github.com/EdwardIzraitel/IssueTracker#readme"
+}

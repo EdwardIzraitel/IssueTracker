@@ -1,3 +1,4 @@
+from re import S
 from fastapi import APIRouter, Depends, HTTPException, status
 from jose import jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -7,6 +8,7 @@ from app.database.database import *
 
 SECRET_KEY = "xFw2mZV3/FjdZX9NgrniHOdMaCzsFu9UcSFimGDNvw0"
 ALGORITHM = "HS256"
+
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -20,21 +22,11 @@ def verify_password(password, hashed_password):
 
 def authenticate_user(email: str, password: str):
     user = get_user(email)
-    print(user)
     if not user:
         return False
     if not verify_password(password, user['hashed_password']):
         return False
     return user
-
-
-@router.post('/token')
-async def token(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = authenticate_user(form_data.username, form_data.password)
-    if not user:
-        return {'error': 'invalid credentials'}
-    token = jwt.encode(user, SECRET_KEY, algorithm=ALGORITHM)
-    return{'access_token': token, 'token_type': 'bearer'}
 
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
@@ -53,11 +45,12 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 def login(request: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(request.username, request.password)
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Wrong password or username")
     token = jwt.encode(user, SECRET_KEY, algorithm=ALGORITHM)
     return{'access_token': token, 'token_type': 'bearer'}
 # @router.post('/login', response_model=User)
-# async def read_user(user: User = Depends(get_current_user)):
+# async def read_user(user: Login = Depends(get_current_user)):
 #     return user
 
 
