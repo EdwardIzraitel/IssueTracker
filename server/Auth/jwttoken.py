@@ -19,7 +19,7 @@ def create_access_token(user: dict):
 def verify_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        user = get_user(payload.get('email'))
+        user = get_user(payload.get('username'))
         return user
     except:
         Error.throw_error("Could not validate credentials",

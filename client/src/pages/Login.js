@@ -18,8 +18,15 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        alert(error);
       });
+  };
+
+  const validate = (value) => {
+    let errorMessage;
+    if (!/^[A-Z0-9]{3,}$/i.test(value)) {
+      errorMessage = "Must be at least 3 characters long";
+    }
+    return errorMessage;
   };
 
   return (
@@ -36,8 +43,8 @@ const Login = () => {
               validateUser(values);
             }}
           >
-            {({ values, handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
+            {({ values, handleSubmit, touched, errors }) => (
+              <form onSubmit={handleSubmit} method="POST">
                 <div className={styles.form_row}>
                   <label htmlFor="username" style={{ display: "block" }}>
                     Username:
@@ -46,8 +53,13 @@ const Login = () => {
                     type="username"
                     name="username"
                     value={values.username}
+                    validate={validate}
                   />
-                  <ErrorMessage name="username" component="div" />
+                  {errors.username && touched.username ? (
+                    <span>{errors.username}</span>
+                  ) : (
+                    <span>&#8203;</span>
+                  )}
                 </div>
                 <div className={styles.form_row}>
                   <label htmlFor="password">Password:</label>
@@ -55,8 +67,13 @@ const Login = () => {
                     type="password"
                     name="password"
                     value={values.password}
+                    validate={validate}
                   />
-                  <ErrorMessage name="password" component="div" />
+                  {errors.password && touched.password ? (
+                    <span>fail</span>
+                  ) : (
+                    <span>&#8203;</span>
+                  )}
                 </div>
                 <button type="submit">Submit</button>
                 <p>Click to Register</p>

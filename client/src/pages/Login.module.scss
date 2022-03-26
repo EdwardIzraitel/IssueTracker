@@ -20,9 +20,10 @@ body {
   }
 }
 .loginContainer {
-  padding: 4rem 5rem;
+  padding: 2rem 5rem;
   background-color: white;
   border-radius: 10px;
+  min-width: 25rem;
   .form_row {
     display: flex;
     flex-direction: column;
