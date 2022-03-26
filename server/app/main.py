@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import login
+from routers import login
 
 
 app = FastAPI(docs_url="/api/docs", openapi_url="/api")

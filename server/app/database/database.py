@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from app.models.user import User
+from models.user import User
 client = MongoClient(
     "mongodb+srv://edward:3OmZ4nsAYXeUFeN4@cluster0.rh30y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.prod

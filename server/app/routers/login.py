@@ -1,10 +1,9 @@
-from re import S
 from fastapi import APIRouter, Depends, HTTPException, status
 from jose import jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
-from app.models.user import User
-from app.database.database import *
+from models.user import User
+from database.database import *
 
 SECRET_KEY = "xFw2mZV3/FjdZX9NgrniHOdMaCzsFu9UcSFimGDNvw0"
 ALGORITHM = "HS256"
@@ -49,9 +48,6 @@ def login(request: OAuth2PasswordRequestForm = Depends()):
                             detail="Wrong password or username")
     token = jwt.encode(user, SECRET_KEY, algorithm=ALGORITHM)
     return{'access_token': token, 'token_type': 'bearer'}
-# @router.post('/login', response_model=User)
-# async def read_user(user: Login = Depends(get_current_user)):
-#     return user
 
 
 # create new user
