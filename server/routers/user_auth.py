@@ -13,8 +13,12 @@ router = APIRouter(prefix="/api")
 @router.post("/login")
 def login(request: OAuth2PasswordRequestForm = Depends()):
     user = get_user(request.username)
-    if not user or (not Hash.verify_password(request.password, user['hashed_password'])):
-        Error.throw_error("Wrong password or username",
+    print(user)
+    if not user:
+        Error.throw_error("User does not exist",
+                          status.HTTP_404_NOT_FOUND)
+    if not Hash.verify_password(request.password, user['hashed_password']):
+        Error.throw_error("Wrong username or password",
                           status.HTTP_404_NOT_FOUND)
     token = create_access_token(user)
     return{'access_token': token, 'token_type': 'bearer'}

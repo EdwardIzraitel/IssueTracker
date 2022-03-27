@@ -1,4 +1,3 @@
-from json import load
 from fastapi import status
 import os
 from dotenv import load_dotenv
