@@ -1,14 +1,9 @@
 from fastapi import status
-import os
 from dotenv import load_dotenv
 from jose import jwt
-from database.database import get_user
+from database.users import get_user
 from exceptions.errors import Error
-
-load_dotenv()
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-ALGORITHM = os.getenv('ALGORITHM')
+from env.variables import SECRET_KEY, ALGORITHM
 
 
 def create_access_token(user: dict):

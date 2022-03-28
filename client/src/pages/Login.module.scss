@@ -29,17 +29,16 @@ body {
     flex-direction: column;
     margin-bottom: 0.8rem;
   }
-  .password_error{
-    display:flex;
+  .password_error {
+    display: flex;
     flex-direction: column;
-    span{
-      margin:0;
+    span {
+      margin: 0;
       font-size: 0.75em;
-      font-weight:bold;
-      color:red;
+      font-weight: bold;
+      color: red;
       text-align: center;
     }
-
   }
   label {
     font-size: 1.4rem;

@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from models.user import User
 from Auth.hashing import Hash
 from Auth.jwttoken import create_access_token
-from database.database import *
+from database.users import *
 from exceptions.errors import Error
 
 
@@ -13,7 +13,6 @@ router = APIRouter(prefix="/api")
 @router.post("/login")
 def login(request: OAuth2PasswordRequestForm = Depends()):
     user = get_user(request.username)
-    print(user)
     if not user:
         Error.throw_error("User does not exist",
                           status.HTTP_404_NOT_FOUND)

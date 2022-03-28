@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import { Formik, Field } from "formik";
 import axios from "axios";
@@ -6,19 +6,20 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [submitError,setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState();
+
   const validateUser = async (values) => {
     const loginFormData = new FormData();
     loginFormData.append("username", values.username);
     loginFormData.append("password", values.password);
-    // setSubmitError("SS")
     await axios
       .post("http://127.0.0.1:8000/api/login", loginFormData)
       .then((res) => {
         console.log(res); //.data
+        setSubmitError("");
       })
       .catch((error) => {
-        // setSubmitError("SS")
+        setSubmitError(error.response.data.detail);
         console.log(error.response);
       });
   };
@@ -29,6 +30,10 @@ const Login = () => {
       errorMessage = "Must be at least 3 characters long";
     }
     return errorMessage;
+  };
+
+  const errorDisplay = (errors, touched) => {
+    return errors && touched ? <span>{errors}</span> : <span>&#8203;</span>;
   };
 
   return (
@@ -51,18 +56,14 @@ const Login = () => {
                   <label htmlFor="username" style={{ display: "block" }}>
                     Username:
                   </label>
-                    <div className={styles.password_error}>
-                      <Field
-                        type="username"
-                        name="username"
-                        value={values.username}
-                        validate={validate}
-                      />
-                      {errors.username && touched.username ? (
-                        <span>{errors.username}</span>
-                      ) : (
-                      <span>&#8203;</span>
-                    )}
+                  <div className={styles.password_error}>
+                    <Field
+                      type="username"
+                      name="username"
+                      value={values.username}
+                      validate={validate}
+                    />
+                    {errorDisplay(errors.username, touched.username)}
                   </div>
                 </div>
                 <div className={styles.form_row}>
@@ -74,16 +75,12 @@ const Login = () => {
                       value={values.password}
                       validate={validate}
                     />
-                    {errors.password && touched.password ? (
-                      <span>test</span>
-                    ) : (
-                      <span>&#8203;</span>
-                    )}
+                    {errorDisplay(errors.password, touched.password)}
                   </div>
                 </div>
                 <div className={styles.password_error}>
                   <button type="submit">Submit</button>
-                  {(!submitError)?<span>&#8203;</span>:<span>Wrong username or password</span>}
+                  {errorDisplay(submitError, true)}
                 </div>
                 <p>Click to Register</p>
                 <div className={styles.dummyAccounts}>
