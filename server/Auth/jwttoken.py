@@ -14,6 +14,7 @@ def verify_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         user = get_user(payload.get('username'))
+        user.pop('hashed_password')
         return user
     except:
         Error.throw_error("Could not validate credentials",

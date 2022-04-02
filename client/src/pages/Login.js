@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import { Formik, Field } from "formik";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { userState } from "../app/features/user.auth.js/userSlicer";
+import { login } from "../app/features/user.auth.js/userSlicer";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const loginInfo = useSelector(userState);
   const navigate = useNavigate();
   const [submitError, setSubmitError] = useState();
 
   const validateUser = async (values) => {
-    const loginFormData = new FormData();
-    loginFormData.append("username", values.username);
-    loginFormData.append("password", values.password);
-    await axios
-      .post("http://127.0.0.1:8000/api/login", loginFormData)
-      .then((res) => {
-        console.log(res); //.data
-        setSubmitError("");
-      })
-      .catch((error) => {
-        setSubmitError(error.response.data.detail);
-        console.log(error.response);
-      });
+    dispatch(login({ username: values.username, password: values.password }));
   };
 
   const validate = (value) => {
