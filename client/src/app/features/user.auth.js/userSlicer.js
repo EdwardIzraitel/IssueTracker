@@ -30,16 +30,19 @@ export const userSlicer = createSlice({
     },
     error: "",
     isLoading: "",
+    loggedIn: "",
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state, action) => {
-        if (state.isLoading === "") state.isLoading = "loading";
+        if (!state.isLoading) state.isLoading = "loading";
+        state.error = "";
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = "";
+        state.error = "";
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;

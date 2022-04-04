@@ -15,7 +15,6 @@ def verify_token(token: str):
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         user = get_user(payload.get('username'))
         user.pop('hashed_password')
-        return user
+        return {"x": True}
     except:
-        Error.throw_error("Could not validate credentials",
-                          status.HTTP_401_UNAUTHORIZED)
+        return {"x": False}

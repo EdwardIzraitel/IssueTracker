@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.scss";
 import { Formik, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userState } from "../app/features/user.auth.js/userSlicer";
 import { login } from "../app/features/user.auth.js/userSlicer";
+import { verifyToken } from "../app/api/userAPI";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const loginInfo = useSelector(userState);
+  const user = useSelector(userState);
   const navigate = useNavigate();
-  const [submitError, setSubmitError] = useState();
 
   const validateUser = async (values) => {
     dispatch(login({ username: values.username, password: values.password }));
+    // console.log(verifyToken());
   };
 
   const validate = (value) => {
@@ -24,9 +25,15 @@ const Login = () => {
     return errorMessage;
   };
 
-  const errorDisplay = (errors, touched) => {
-    return errors && touched ? <span>{errors}</span> : <span>&#8203;</span>;
+  const errorDisplay = (error, touched) => {
+    return error && touched ? <span>{error}</span> : <span>&#8203;</span>;
   };
+  //@TODO
+  // clean this useEffect somehow (want to do this in validateUser)
+  useEffect(() => {
+    // if (!user.error && user.user.first_name) navigate("/");
+    console.log(verifyToken());
+  }, [user.user]);
 
   return (
     <div className={styles.center}>
@@ -71,8 +78,10 @@ const Login = () => {
                   </div>
                 </div>
                 <div className={styles.password_error}>
-                  <button type="submit">Submit</button>
-                  {errorDisplay(submitError, true)}
+                  <button type="submit" disabled={user.isLoading}>
+                    Submit
+                  </button>
+                  {errorDisplay(user.error, true)}
                 </div>
                 <p>Click to Register</p>
                 <div className={styles.dummyAccounts}>

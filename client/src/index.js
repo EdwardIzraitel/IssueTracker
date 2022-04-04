@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Tickets from "./pages/Tickets";
 import Projects from "./pages/Projects";
 import Login from "./pages/Login";
+import ProtectedRoute from "./protected.route";
 
 export default function App() {
   return (
@@ -16,7 +17,15 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/" element={<Home />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route exact path="/projects" element={<Projects />} />
           <Route exact path="/tickets" element={<Tickets />} />
         </Routes>

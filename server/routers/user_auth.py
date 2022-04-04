@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from models.user import User
 from Auth.hashing import Hash
 from Auth.jwttoken import create_access_token
-from Auth.oauth import get_current_user
+from Auth.oauth import is_token_valid
 from database.users import *
 from exceptions.errors import Error
 
@@ -18,7 +18,8 @@ def login(request: OAuth2PasswordRequestForm = Depends()):
         Error.throw_error("Wrong username or password",
                           status.HTTP_404_NOT_FOUND)
     token = create_access_token(user)
-    return{'access_token': token, 'token_type': 'bearer'}
+    user.pop('hashed_password')
+    return{'access_token': token, 'token_type': 'bearer', 'user': user}
 
 
 # create new user
@@ -35,5 +36,5 @@ def new_user(user: User):
 
 
 @router.get('/get/user')
-def verify_current_user(current_user: User = Depends(get_current_user)):
-    return current_user
+def verify_current_user(token_valid: bool = Depends(is_token_valid)):
+    return token_valid
