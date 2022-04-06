@@ -8,7 +8,10 @@ import {
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import Stats from "../components/DonutChart/Stats";
+import { useNavigate } from "react-router-dom";
+import { verifyToken } from "../app/api/userAPI";
 const Home = () => {
+  const navigate = useNavigate();
   const list = [
     ["e", "test", "Edward", "Complete"],
     ["f", "test", "Edward", "Complete"],
@@ -21,6 +24,7 @@ const Home = () => {
   const [currentProjectPage, setCurrentProjectPage] = useState(1);
   const [projectsOnCurrentPage, setProjectsOnCurrentPage] = useState([]);
   const [totalPageNumbers, setTotalPageNumbers] = useState(1);
+  const [verified, setVerified] = useState(false);
   const MAX_ITEMS_PER_PAGE = 4;
 
   useEffect(() => {
@@ -33,10 +37,20 @@ const Home = () => {
   }, [currentProjectPage]);
 
   useEffect(() => {
-    findTotalPageNumbers(list, setTotalPageNumbers, MAX_ITEMS_PER_PAGE);
+    async function getToken() {
+      try {
+        const verifiedToken = await verifyToken();
+        if (!verifiedToken.data) navigate("/login");
+        setVerified(true);
+        findTotalPageNumbers(list, setTotalPageNumbers, MAX_ITEMS_PER_PAGE);
+      } catch (error) {
+        navigate("/login");
+      }
+    }
+    getToken();
   }, []);
 
-  return (
+  return !verified ? null : (
     <div className="content-wrapper">
       <Sidebar />
       <main className="main-content">

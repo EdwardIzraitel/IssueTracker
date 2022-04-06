@@ -9,7 +9,6 @@ import Home from "./pages/Home";
 import Tickets from "./pages/Tickets";
 import Projects from "./pages/Projects";
 import Login from "./pages/Login";
-import ProtectedRoute from "./protected.route";
 
 export default function App() {
   return (
@@ -21,9 +20,9 @@ export default function App() {
             exact
             path="/"
             element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Home />
+              // {/* </ProtectedRoute> */}
             }
           />
           <Route exact path="/projects" element={<Projects />} />

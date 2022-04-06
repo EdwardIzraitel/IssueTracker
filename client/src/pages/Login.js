@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./Login.module.scss";
 import { Formik, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userState } from "../app/features/user.auth.js/userSlicer";
 import { login } from "../app/features/user.auth.js/userSlicer";
-import { verifyToken } from "../app/api/userAPI";
 
 const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector(userState);
   const navigate = useNavigate();
 
-  const validateUser = async (values) => {
+  const validateUser = (values) => {
     dispatch(login({ username: values.username, password: values.password }));
-    // console.log(verifyToken());
+    navigate("/");
   };
 
   const validate = (value) => {
@@ -28,12 +27,6 @@ const Login = () => {
   const errorDisplay = (error, touched) => {
     return error && touched ? <span>{error}</span> : <span>&#8203;</span>;
   };
-  //@TODO
-  // clean this useEffect somehow (want to do this in validateUser)
-  useEffect(() => {
-    // if (!user.error && user.user.first_name) navigate("/");
-    console.log(verifyToken());
-  }, [user.user]);
 
   return (
     <div className={styles.center}>

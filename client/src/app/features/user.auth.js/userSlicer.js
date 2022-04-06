@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
   "user/loginUser",
   async (loginCred, { getState, rejectWithValue }) => {
     const { isLoading } = getState().user;
-    if (isLoading == "pending") return;
+    if (isLoading === "pending") return;
 
     const loginFormData = new FormData();
     loginFormData.append("username", loginCred.username);
