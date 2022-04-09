@@ -1,8 +1,5 @@
-from fastapi import status
-from dotenv import load_dotenv
 from jose import jwt
 from database.users import get_user
-from exceptions.errors import Error
 from env.variables import SECRET_KEY, ALGORITHM
 
 

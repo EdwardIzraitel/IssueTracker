@@ -1,0 +1,8 @@
+1 - Docker set up
+2 - Page Design
+2.1 - update github with new Design
+2.2 - design the missing pages
+3 - page implementation
+
+
+Last - lazy loading
