@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import Stats from "../components/DonutChart/Stats";
 import { useNavigate } from "react-router-dom";
 import { verifyToken } from "../app/api/userAPI";
+
 const Home = () => {
   const navigate = useNavigate();
   const list = [
@@ -42,15 +43,15 @@ const Home = () => {
         const verifiedToken = await verifyToken();
         if (!verifiedToken.data) navigate("/login");
         setVerified(true);
-        findTotalPageNumbers(list, setTotalPageNumbers, MAX_ITEMS_PER_PAGE);
       } catch (error) {
         navigate("/login");
       }
     }
     getToken();
+    findTotalPageNumbers(list, setTotalPageNumbers, MAX_ITEMS_PER_PAGE);
   }, []);
 
-  return !verified ? null : (
+  return (
     <div className="content-wrapper">
       <Sidebar />
       <main className="main-content">
