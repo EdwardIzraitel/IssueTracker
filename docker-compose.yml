@@ -9,7 +9,7 @@ services:
     build: client
     ports:
       - 3000:3000
-
+#TODO APPLY MONGODB dockerization
   # mongodb:
   #   image: mongo:latest
   #   restart: unless-stopped
