@@ -18,4 +18,6 @@ services:
 
   server:
     build: server
-    command: python app/main.python
+    command: uvicorn main:app --host 0.0.0.0
+    ports:
+      - 8008:8000
