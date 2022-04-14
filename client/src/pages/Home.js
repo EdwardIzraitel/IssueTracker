@@ -38,6 +38,7 @@ const Home = () => {
   }, [currentProjectPage]);
 
   useEffect(() => {
+    let verified = false;
     async function getToken() {
       try {
         const verifiedToken = await verifyToken();
@@ -51,7 +52,7 @@ const Home = () => {
     findTotalPageNumbers(list, setTotalPageNumbers, MAX_ITEMS_PER_PAGE);
   }, []);
 
-  return (
+  return !verified ? null : (
     <div className="content-wrapper">
       <Sidebar />
       <main className="main-content">

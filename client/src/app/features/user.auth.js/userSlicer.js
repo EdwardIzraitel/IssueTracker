@@ -3,10 +3,7 @@ import { tryLogin } from "../../api/userAPI";
 
 export const login = createAsyncThunk(
   "user/loginUser",
-  async (loginCred, { getState, rejectWithValue }) => {
-    const { isLoading } = getState().user;
-    if (isLoading === "pending") return;
-
+  async (loginCred, { rejectWithValue }) => {
     const loginFormData = new FormData();
     loginFormData.append("username", loginCred.username);
     loginFormData.append("password", loginCred.password);
@@ -30,23 +27,26 @@ export const userSlicer = createSlice({
     },
     error: "",
     isLoading: "",
-    loggedIn: "",
+    loggedIn: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state, action) => {
-        if (!state.isLoading) state.isLoading = "loading";
+        state.isLoading = "loading";
         state.error = "";
+        state.loggedIn = false;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = "";
         state.error = "";
+        state.loggedIn = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
         state.isLoading = "";
+        state.loggedIn = false;
       });
   },
 });

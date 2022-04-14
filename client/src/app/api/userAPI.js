@@ -8,6 +8,7 @@ export const tryLogin = async (loginFormData) => {
     loginFormData
   );
   setToken(response.data.access_token);
+  // verifyToken();
   return response.data.user;
 };
 

@@ -1,6 +1,8 @@
+from fastapi import status
 from jose import jwt
 from database.users import get_user
 from env.variables import SECRET_KEY, ALGORITHM
+from exceptions.errors import Error
 
 
 def create_access_token(user: dict):
@@ -15,3 +17,5 @@ def verify_token(token: str):
         return True
     except:
         return False
+        # return Error.throw_error("Auth failed",
+        #                          status.HTTP_404_NOT_FOUND)

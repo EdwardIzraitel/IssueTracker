@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { verifyToken } from "../app/api/userAPI";
 
-function useAuth() {
+async function useAuth() {
   let verified = false; //[verified, setVerified] = useState(false);
 
-  useEffect(() => {
+  const isVerified = async () => {
     try {
-      const tokenStatus = verifyToken();
-      if (tokenStatus) verified = true;
-      return verified;
+      const c = await verifyToken();
+      if (c.data) verified = true;
     } catch (err) {
-      return verified;
+      console.log(err);
     }
-  });
+  };
+  isVerified();
   return verified;
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Login.module.scss";
 import { Formik, Field } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { userState } from "../app/features/user.auth.js/userSlicer";
 import { login } from "../app/features/user.auth.js/userSlicer";
 
+//@TODO
+// 1. remove hover affect when loading and change to loading
 const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector(userState);
@@ -13,7 +15,6 @@ const Login = () => {
 
   const validateUser = (values) => {
     dispatch(login({ username: values.username, password: values.password }));
-    navigate("/");
   };
 
   const validate = (value) => {
@@ -28,8 +29,12 @@ const Login = () => {
     return error && touched ? <span>{error}</span> : <span>&#8203;</span>;
   };
 
+  useEffect(() => {
+    if (user.loggedIn) navigate("/");
+  }, [user.loggedIn]);
+
   return (
-    <div className={styles.center}>
+    <div className={styles.center_content}>
       <div className={styles.titleContainer}>
         <h1>Welcome to #####</h1>
         <div className={styles.login}>
@@ -38,7 +43,9 @@ const Login = () => {
         <div className={styles.loginContainer}>
           <Formik
             initialValues={{ username: "", password: "" }}
-            onSubmit={async (values) => {
+            validateOnChange={false}
+            validateOnBlur={false}
+            onSubmit={(values) => {
               validateUser(values);
             }}
           >
@@ -71,19 +78,27 @@ const Login = () => {
                   </div>
                 </div>
                 <div className={styles.password_error}>
-                  <button type="submit" disabled={user.isLoading}>
+                  <button
+                    className={styles.login_button}
+                    type="submit"
+                    disabled={user.isLoading}
+                  >
                     Submit
                   </button>
                   {errorDisplay(user.error, true)}
                 </div>
-                <p>Click to Register</p>
-                <div className={styles.dummyAccounts}>
-                  <p>Dummy User</p>
-                  <p>Dummy Admin</p>
-                </div>
               </form>
             )}
           </Formik>
+          <div className={styles.additional_buttons}>
+            <button className={styles.register_button}>
+              Click to Register
+            </button>
+          </div>
+          <div className={styles.dummyAccounts}>
+            <button className={styles.dummy_button}>Dummy User</button>
+            <button className={styles.dummy_button}>Dummy Admin</button>
+          </div>
         </div>
       </div>
     </div>

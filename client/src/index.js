@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Tickets from "./pages/Tickets";
 import Projects from "./pages/Projects";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 // import ProtectedRoute from "./protected.route";
 
 //@TODO implemenet lazy loading (code splitting)
@@ -19,6 +20,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/projects" element={<Projects />} />
           <Route exact path="/tickets" element={<Tickets />} />

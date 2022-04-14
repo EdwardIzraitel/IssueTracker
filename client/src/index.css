@@ -8,7 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --background-color: #d8f2df;
+  --background-color: #ffffff;
   --secondary-color: rgb(160, 158, 158);
   --hover-color: #a5f3b9;
 }
